@@ -1,38 +1,22 @@
-// CalculatorTutorial.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
-#include "Calculator.h"
-
 using namespace std;
 
-int main()
-{
-  
-    char oper  = '+';
-    bool a = true;
-    bool flag = true;
-    bool is_ready = false;
-    char letter = 'A';
-    char symbol = '!';
-    double x = 0.0;
-    double y = 0.0;
-    double result = 0.0;
+int a ;
+int main() {
+    int a = 10;
+    float b = 5.5;
+    char c = 'A';
+    double d = 10.99;
+    bool is_valid = true;
 
+    int valid123 = 100;
+    float customFloat = 9.8;
+    char validChar = 'B';
+    double e4 = 4.0e3;
 
-    
-
-    cout << "Calculator Console Application" << endl << endl;
-    cout << "Please enter the operation to perform. Format: a+b | a-b | a*b | a/b"
-         << endl;
-
-    Calculator c;
-    while (true)
-    {
-        cin >> x >> oper >> y;
-        result = c.Calculate(x, oper, y);
-        cout << "Result " << "of " << x << oper << y << " is: " << result << endl;
-    }
+    // Operaciones para evitar warnings
+    cout << a << " " << b << " " << c << " " << d << " " << is_valid << endl;
+    cout << valid123 << " " << customFloat << " " << validChar << " " << e4 << endl;
 
     return 0;
 }

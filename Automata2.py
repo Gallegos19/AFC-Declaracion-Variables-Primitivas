@@ -4,12 +4,8 @@ FINAL_STATES = {'q32'}
 
 class Automata:
     def __init__(self):
-        # self.code = code 
-        self.variables = [] 
-        self.position = 0  
+        # self.code = code  
         self.state = 'start'  # Inicializa el estado
-        self.current_reference = ""  # Referencia actual
-        self.referencias = []  # Lista para almacenar las referencias
 
     def is_letter(self, char):
         return 'a' <= char <= 'z' or 'A' <= char <= 'Z'
@@ -339,39 +335,139 @@ class Automata:
             if char == 't':
                 self.state = 'q45'
                 return True
+        
+        
+        #entrada short int
+        elif self.state  == 'q6':
+            if char == 'h':
+                self.state = 'q24'
+                return True
+        
+        elif self.state  == 'q24':
+            if char == 'o':
+                self.state = 'q25'
+                return True    
+        
+        elif self.state  == 'q25':
+            if char == 'r':
+                self.state = 'q26'
+                return True
+        
+        elif self.state  == 'q26':
+            if char == 't':
+                self.state = 'q27'
+                return True
             
+        elif self.state  == 'q27':
+            if char == ' ':
+                self.state = 'q51'
+                return True    
+        
+        elif self.state  == 'q51':
+            if char == 'i':
+                self.state = 'q52'
+                return True    
+            
+        elif self.state  == 'q52':
+            if char == 'n':
+                self.state = 'q59'
+                return True
+            
+        elif self.state  == 'q59':
+            if char == 't':
+                self.state = 'q60'
+                return True  
+            
+        elif self.state  == 'q60':
+            if char == ' ':
+                self.state = 'q1'
+                return True 
+            
+        elif self.state  == 'q1':
+            if self.is_letter(char) or char == '_' or char == '$' or char.isdigit():
+                self.state = 'q8'
+                return True     
+            elif char == ' ':
+                return True
+            
+        elif self.state  == 'q8':
+            if char == ',':
+                self.state = 'q1'
+                return True     
+            elif char == ' ': 
+                self.state = 'q61'
+                return True
+            elif char == '=':
+                self.state = 'q9'
+                return True
+            elif self.is_letter(char) or char == '_' or char.isdigit():
+                return True
+        elif self.state == 'q61':
+            if char == '=':
+                self.state = 'q9'
+                return True
+            elif char == ' ':
+                return True
+
+        
+        elif self.state == 'q9':
+            if char == '-' or char.isdigit():
+                self.state = 'q62'
+                return True
+            elif char == ' ':
+                self.state = 'q63'
+                return True 
+            
+                
+        elif self.state == 'q63':
+            if char == '-' or char.isdigit():
+                self.state = 'q62'
+                return True
+            elif char == ' ':
+                return True
+                
+        elif self.state == 'q62':
+            if char == ';':
+                self.state = 'q32'
+                return True
+            elif char == ',':
+                self.state = 'q1'
+                return True
+            elif char.isdigit() or char == ' ':
+                return True
+            
+        #entrada long int
+        elif self.state == 'q7':
+            if char == 'o':
+                self.state = 'q28'
+                return True
+            
+        elif self.state == 'q28':
+            if char == 'n':
+                self.state = 'q29'
+                return True        
+        
+        elif self.state == 'q29':
+            if char == 'g':
+                self.state = 'q30'
+                return True
+        
+        elif self.state == 'q30':
+            if char == ' ':
+                self.state = 'q51'
+                return True    
+                
         #transicion fallida
         return False
 
     def reset(self):
         self.state = 'start'
-        self.current_reference = ""
 
-    # def store_reference(self, line_number, char_position):
-    #     if self.current_reference and ';' in self.current_reference:
-    #         self.referencias.append({
-    #             "Declaracion": self.current_reference,
-    #             "Linea": line_number,
-    #             "Columna": char_position - len(self.current_reference) + 1
-    #         })
-    #     self.reset()
 
-    # def find_references(self, text):
-    #     self.referencias = []
-    #     self.current_reference = ""
-    #     self.state = 'start'
-    #     lines = text.splitlines()
-    #     for line_number, line in enumerate(lines, start=1):
-    #         for char_position, char in enumerate(line, start=1):
-    #             self.transition(char, line_number, char_position)
-
-    #     self.store_reference(line_number, char_position)
-    #     return self.referencias
-    
     def is_valid(self, text):
         self.reset()
         self.text = text
-        self.current_pos = 0  # Posición actual en la cadena
+        self.current_pos = 0 
 
         for char in text:
             if not self.transition(char):
@@ -379,5 +475,6 @@ class Automata:
             self.current_pos += 1
         # Verificar si terminó en un estado de aceptación
         return self.state in FINAL_STATES
+    
 
 
