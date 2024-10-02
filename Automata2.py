@@ -198,7 +198,6 @@ class Automata:
                 self.state = 'q58'
                 return True
             
-
         elif self.state == 'q58':
             if self.is_letter(char) or char.isdigit():
                 return True
@@ -206,7 +205,6 @@ class Automata:
                 self.state = 'q40_1'
                 return True
             
-
         elif self.state == 'q40_1':
             if char == ',':
                 self.state = 'q23'
@@ -265,6 +263,9 @@ class Automata:
             elif char == '=':
                 self.state = 'q31'
                 return True
+            elif char == ';':
+                self.state = 'q32'
+                return True
             elif self.is_letter(char) or char.isdigit() or char == '_':
                 return True
             
@@ -314,8 +315,7 @@ class Automata:
                 return  True
             elif char == ' ':
                 return True
-            
-        
+                   
         #entrada float
         elif self.state == 'q2':
             if char == 'l':
@@ -335,8 +335,7 @@ class Automata:
             if char == 't':
                 self.state = 'q45'
                 return True
-        
-        
+             
         #entrada short int
         elif self.state  == 'q6':
             if char == 'h':
@@ -384,7 +383,7 @@ class Automata:
                 return True 
             
         elif self.state  == 'q1':
-            if self.is_letter(char) or char == '_' or char == '$' or char.isdigit():
+            if self.is_letter(char) or char == '_' or char == '$':
                 self.state = 'q8'
                 return True     
             elif char == ' ':
@@ -397,6 +396,9 @@ class Automata:
             elif char == ' ': 
                 self.state = 'q61'
                 return True
+            elif char == ';':
+                self.state == 'q32'
+                return True 
             elif char == '=':
                 self.state = 'q9'
                 return True
@@ -408,16 +410,14 @@ class Automata:
                 return True
             elif char == ' ':
                 return True
-
-        
+ 
         elif self.state == 'q9':
             if char == '-' or char.isdigit():
                 self.state = 'q62'
                 return True
             elif char == ' ':
                 self.state = 'q63'
-                return True 
-            
+                return True   
                 
         elif self.state == 'q63':
             if char == '-' or char.isdigit():
@@ -463,13 +463,13 @@ class Automata:
     def reset(self):
         self.state = 'start'
 
-
     def is_valid(self, text):
         self.reset()
         self.text = text
         self.current_pos = 0 
 
         for char in text:
+            
             if not self.transition(char):
                 return False
             self.current_pos += 1

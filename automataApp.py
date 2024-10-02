@@ -42,13 +42,19 @@ class VariableAnalyzerApp:
 
     def validate(self, declarations):
         results = []
-        for index, declaration in enumerate(declarations.splitlines(), start=0):
+        # Separar el contenido en líneas y quitar espacios en blanco
+        lines = declarations.splitlines()
+        cleaned_lines = [line.strip() for line in lines]  # Quitar espacios en blanco de cada línea
+        print(cleaned_lines)
+        
+        for index, declaration in enumerate(cleaned_lines, start=1):
             if self.validator.is_valid(declaration):
                 print(f"Fila {index}: declaración válida: {declaration}")
                 results.append([index, declaration, "declaración aceptada"])
             else:
                 print(f"Fila {index}: declaración no válida: {declaration}")
                 results.append([index, declaration, "declaración inválida"])
+        
         self.display_results(results)
 
     def display_results(self, references):
