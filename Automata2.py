@@ -10,7 +10,7 @@ class Automata:
     def is_letter(self, char):
         return 'a' <= char <= 'z' or 'A' <= char <= 'Z'
 
-    def transition(self, char):
+    def transition(self, char): 
         print(f"Estado: {self.state}, Carácter: {char}")
         if self.state == 'start':
             if char == 'b':
@@ -390,23 +390,27 @@ class Automata:
                 return True
             
         elif self.state  == 'q8':
-            if char == ',':
+            if char == ';': 
+                self.state = 'q32'
+                return True
+            elif char == ',':
                 self.state = 'q1'
                 return True     
             elif char == ' ': 
                 self.state = 'q61'
                 return True
-            elif char == ';':
-                self.state == 'q32'
-                return True 
             elif char == '=':
                 self.state = 'q9'
                 return True
             elif self.is_letter(char) or char == '_' or char.isdigit():
                 return True
+            
         elif self.state == 'q61':
             if char == '=':
                 self.state = 'q9'
+                return True
+            elif char == ';': 
+                self.state = 'q32'
                 return True
             elif char == ' ':
                 return True
