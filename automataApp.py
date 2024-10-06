@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, filedialog, messagebox
 from Automata2 import Automata
+import csv
 
 class VariableAnalyzerApp:
     def __init__(self, root):
@@ -13,6 +14,8 @@ class VariableAnalyzerApp:
         
         self.style.configure('TButton', font=('Arial', 12), background='#89c9e8', foreground='#ffffff')
         self.style.map('TButton', background=[('active', '#89c9e8')])  
+
+        self.references = []  # Para almacenar los resultados de la validación
 
         self.create_widgets()
        
@@ -27,13 +30,16 @@ class VariableAnalyzerApp:
         self.report_text = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, width=60, height=20, font=('Consolas', 10))
         self.report_text.pack(pady=10)
 
-        # Botón para descargar el reporte
+        # Botón para descargar el reporte en txt
         self.download_button = ttk.Button(self.root, text="Descargar reporte", command=self.download_report)
         self.download_button.pack(pady=10)
-
+        
+        # Botón para descargar el reporte en CSV
+        self.download_csv_button = ttk.Button(self.root, text="Descargar reporte (CSV)", command=self.download_report_csv)
+        self.download_csv_button.pack(pady=10)
     def select_file(self):
-        """Seleccionar un archivo C++ y procesar su contenido."""
-        file_path = filedialog.askopenfilename(filetypes=[("Archivos C++", "*.cpp")])
+        """Seleccionar un archivo C++ o TXT y procesar su contenido."""
+        file_path = filedialog.askopenfilename(filetypes=[("Archivos C++ o TXT", "*.cpp;*.txt")])
         if file_path:
             with open(file_path, 'r') as file:
                 content = file.read()
@@ -41,7 +47,7 @@ class VariableAnalyzerApp:
             self.validate(content)
 
     def validate(self, declarations):
-        results = []
+        self.references = []  # Inicializamos o limpiamos la lista de referencias
         # Separar el contenido en líneas y quitar espacios en blanco
         lines = declarations.splitlines()
         cleaned_lines = [line.strip() for line in lines]  # Quitar espacios en blanco de cada línea
@@ -50,12 +56,12 @@ class VariableAnalyzerApp:
         for index, declaration in enumerate(cleaned_lines, start=1):
             if self.validator.is_valid(declaration):
                 print(f"Fila {index}: declaración válida: {declaration}")
-                results.append([index, declaration, "declaración aceptada"])
+                self.references.append([index, declaration, "declaración aceptada"])
             else:
                 print(f"Fila {index}: declaración no válida: {declaration}")
-                results.append([index, declaration, "declaración inválida"])
+                self.references.append([index, declaration, "declaración inválida"])
         
-        self.display_results(results)
+        self.display_results(self.references)
 
     def display_results(self, references):
         """Mostrar los resultados en el área de texto."""
@@ -75,8 +81,22 @@ class VariableAnalyzerApp:
         if file_path:
             try:
                 with open(file_path, 'w') as file:
-                    file.write(self.report_text.get(1.0, tk.END))  # Escribir todo el contenido del scrolledtext
+                    file.write(self.report_text.get(1.0, tk.END)) 
                 messagebox.showinfo("Éxito", "Reporte guardado exitosamente.")
+            except Exception as e:
+                messagebox.showerror("Error", f"No se pudo guardar el archivo: {e}")
+    
+    def download_report_csv(self):
+        """Guardar el contenido del reporte en un archivo CSV."""
+        file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("Archivo CSV", "*.csv")])
+        if file_path:
+            try:
+                with open(file_path, mode='w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Fila", "Declaración", "Estado"]) 
+                    for ref in self.references:  
+                        writer.writerow(ref)
+                messagebox.showinfo("Éxito", "Reporte guardado exitosamente en CSV.")
             except Exception as e:
                 messagebox.showerror("Error", f"No se pudo guardar el archivo: {e}")
 

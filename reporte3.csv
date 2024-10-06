@@ -1,0 +1,43 @@
+Fila,Declaraci髇,Estado
+1,#include <iostream>,declaraci髇 inv醠ida
+2,using namespace std;,declaraci髇 inv醠ida
+3,,declaraci髇 inv醠ida
+4,int main() {,declaraci髇 inv醠ida
+5,// Declaraci贸n de variables enteras,declaraci髇 inv醠ida
+6,int a = 10;,declaraci髇 aceptada
+7,int b = -5;,declaraci髇 aceptada
+8,int ua = 100;,declaraci髇 aceptada
+9,long int la = 1234567890;,declaraci髇 aceptada
+10,short int sa = 200;,declaraci髇 aceptada
+11,,declaraci髇 inv醠ida
+12,// Declaraci贸n de variables de punto flotante,declaraci髇 inv醠ida
+13,float f = 3.14f;,declaraci髇 inv醠ida
+14,double d = 3.14159;,declaraci髇 aceptada
+15,double ld = 2.718281828459045;,declaraci髇 aceptada
+16,,declaraci髇 inv醠ida
+17,// Declaraci贸n de variables de caracteres,declaraci髇 inv醠ida
+18,char c = 'A';,declaraci髇 aceptada
+19,char uc = 255;,declaraci髇 inv醠ida
+20,,declaraci髇 inv醠ida
+21,// Declaraci贸n de variables booleanas,declaraci髇 inv醠ida
+22,bool flagTrue = true;,declaraci髇 aceptada
+23,bool flagFalse = false;,declaraci髇 aceptada
+24,,declaraci髇 inv醠ida
+25,,declaraci髇 inv醠ida
+26,,declaraci髇 inv醠ida
+27,// Impresi贸n de las variables,declaraci髇 inv醠ida
+28,"cout << ""int a: "" << a << endl;",declaraci髇 inv醠ida
+29,"cout << ""int b: "" << b << endl;",declaraci髇 inv醠ida
+30,"cout << ""unsigned int ua: "" << ua << endl;",declaraci髇 inv醠ida
+31,"cout << ""long la: "" << la << endl;",declaraci髇 inv醠ida
+32,"cout << ""short sa: "" << sa << endl;",declaraci髇 inv醠ida
+33,"cout << ""float f: "" << f << endl;",declaraci髇 inv醠ida
+34,"cout << ""double d: "" << d << endl;",declaraci髇 inv醠ida
+35,"cout << ""double ld: "" << ld << endl;",declaraci髇 inv醠ida
+36,"cout << ""char c: "" << c << endl;",declaraci髇 inv醠ida
+37,"cout << ""unsigned char uc: "" << (int)uc << endl; // casteo para mostrar el valor num茅rico de uc",declaraci髇 inv醠ida
+38,"cout << ""bool flagTrue: "" << flagTrue << endl;",declaraci髇 inv醠ida
+39,"cout << ""bool flagFalse: "" << flagFalse << endl;",declaraci髇 inv醠ida
+40,,declaraci髇 inv醠ida
+41,return 0;,declaraci髇 inv醠ida
+42,},declaraci髇 inv醠ida

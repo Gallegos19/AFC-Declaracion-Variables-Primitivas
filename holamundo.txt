@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string>
+
+int main() {
+    int numero = 10;
+    float decimal = 3.14;
+    std::string mensaje = "Hola Mundo";
+    
+    for (int i = 0; i < numero; i++) {
+        std::cout << mensaje << std::endl;
+    }
+
+    return 0;
+}

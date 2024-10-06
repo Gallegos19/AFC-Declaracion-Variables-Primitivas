@@ -1,0 +1,10 @@
+Fila,Declaración,Estado
+1,"float _amount = 5.5  ,   e = 34.55   , i = 3.432;",declaración aceptada
+2,"char letter     = 'a' , h= '5';",declaración aceptada
+3,double pi = 3.1416;,declaración aceptada
+4,bool $is_valid    = true ;,declaración aceptada
+5,"int total = 1 , e2= 2;",declaración aceptada
+6,"short int a1_ = -1000, a2_ = -1;",declaración aceptada
+7,long int b = 50000;,declaración aceptada
+8,bool ar = false;,declaración aceptada
+9,"int a= -5, b;",declaración aceptada
